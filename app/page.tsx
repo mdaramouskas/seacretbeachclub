@@ -1,103 +1,119 @@
+import { HeroSlider } from "@/components/HeroSlider";
+import { NewsletterForm } from "@/components/NewsletterForm";
 import Image from "next/image";
+import Link from "next/link";
+import { BASE_IMG } from "@/lib/constants";
+
+const FEATURES = [
+  {
+    image: `${BASE_IMG}/beach-2.jpg`,
+    title: "Beach",
+    description: "An oasis in the heart of Tsilivi bay.",
+    href: "/beach",
+  },
+  {
+    image: `${BASE_IMG}/restaurant-3.jpg`,
+    title: "Restaurant",
+    description: "Exceptional Mediterranean cuisine.",
+    href: "/restaurant",
+  },
+  {
+    image: `${BASE_IMG}/weddings-2.jpg`,
+    title: "Weddings & Events",
+    description: "Making your special day unforgettable.",
+    href: "/weddings-events",
+  },
+  {
+    image: `${BASE_IMG}/experience-3.jpg`,
+    title: "The Experience",
+    description: "Innovative cuisine & a unique beach.",
+    href: "/experience",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      {/* Full-screen hero slider */}
+      <HeroSlider />
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      {/* Welcome section */}
+      <section className="py-20 px-6 bg-white text-center">
+        <div className="max-w-3xl mx-auto">
+          <p className="text-[#00ffb8] text-xs tracking-[0.3em] uppercase mb-4">
+            Welcome
+          </p>
+          <h2 className="text-3xl md:text-5xl font-light tracking-widest uppercase text-black mb-6">
+            Seacret Beach Club
+          </h2>
+          <div className="w-12 h-px bg-[#00ffb8] mx-auto mb-6" />
+          <p className="text-gray-500 leading-relaxed text-sm md:text-base font-light max-w-2xl mx-auto">
+            The absolute all-day beach bar & restaurant experience in Tsilivi,
+            Zakynthos. Seacret Club invites you to discover environment,
+            innovative cuisine & a unique beach.
+          </p>
+        </div>
+      </section>
+
+      {/* Features grid */}
+      <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+        {FEATURES.map((feature) => (
+          <Link
+            key={feature.href}
+            href={feature.href}
+            className="group relative overflow-hidden h-80"
           >
             <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+              src={feature.image}
+              alt={feature.title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 25vw"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <div className="absolute inset-0 bg-black/40 group-hover:bg-black/60 transition-colors duration-300" />
+            <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-6">
+              <h3 className="text-white text-xl font-light tracking-widest uppercase mb-2">
+                {feature.title}
+              </h3>
+              <div className="w-8 h-px bg-[#00ffb8] mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <p className="text-white/70 text-xs font-light opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                {feature.description}
+              </p>
+            </div>
+          </Link>
+        ))}
+      </section>
+
+      {/* About strip */}
+      <section className="bg-[#181818] py-16 px-6">
+        <div className="max-w-4xl mx-auto flex flex-col md:flex-row items-center gap-10">
+          <div className="flex-1 text-center md:text-left">
+            <p className="text-[#00ffb8] text-xs tracking-[0.3em] uppercase mb-3">
+              Tsilivi, Zakynthos
+            </p>
+            <h2 className="text-white text-3xl md:text-4xl font-light tracking-wider uppercase mb-4">
+              More Than a Beach
+            </h2>
+            <p className="text-white/60 text-sm leading-relaxed font-light">
+              From boutique shopping to VIP transfers, weddings to shisha
+              evenings — Seacret is your complete destination on the beautiful
+              shores of Zakynthos.
+            </p>
+          </div>
+          <div className="flex-shrink-0">
+            <Image
+              src={`${BASE_IMG}/seacret-logo-shell.png`}
+              alt="Seacret Logo"
+              width={120}
+              height={120}
+              className="opacity-60"
+            />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+      </section>
+
+      {/* Newsletter */}
+      <NewsletterForm />
+    </>
   );
 }
