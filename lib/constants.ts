@@ -9,6 +9,7 @@ export const NAV_LINKS = [
   { href: "/weddings-events", label: "Weddings & Events" },
   { href: "/services-hospitality", label: "Services & Hospitality" },
   { href: "/glance", label: "At a Glance" },
+  { href: "/booking", label: "Book a Spot" },
   { href: "/contact", label: "Contact" },
 ];
 

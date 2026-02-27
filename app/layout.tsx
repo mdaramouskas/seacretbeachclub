@@ -3,6 +3,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { ServiceWorkerRegistration } from "@/components/ServiceWorkerRegistration";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -16,6 +17,7 @@ export const metadata: Metadata = {
   description:
     "The absolute all-day beach bar & restaurant in Tsilivi, Zakynthos. Discover environment, innovative cuisine & a unique beach experience.",
   keywords: "beach club, Zakynthos, Tsilivi, restaurant, beach bar, Seacret",
+  manifest: "/manifest.json",
 };
 
 export default function RootLayout({
@@ -26,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${roboto.variable} antialiased`}>
+        <ServiceWorkerRegistration />
         <Header />
         <main>{children}</main>
         <Footer />
